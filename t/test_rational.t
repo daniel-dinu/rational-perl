@@ -1,7 +1,7 @@
 use strict;
 use warnings;
  
-use Test::Simple tests => 537;
+use Test::Simple tests => 539;
 
 use FindBin;
 use lib "$FindBin::Bin/../lib";
@@ -58,24 +58,24 @@ test_constructor_denominator_type_error;
 sub test_constructor_denominator_zero_division_error {
 	my $function_name = (caller(0))[3];
 	
-	#my $numerator = 1;
-	#my $denominator = 0;
-	#my $r1 = repr($numerator);
-	#my $r2 = repr($denominator);
-	#eval { Rational->new($numerator, $denominator) };
-	#ok($@ ne '', "Test $function_name: (numerator=$r1, denominator=$r2)");
-	
-	#$numerator = Rational->new;
-	#$denominator = 0;
-	#$r1 = repr($numerator);
-	#$r2 = repr($denominator);
-	#eval { Rational->new($numerator, $denominator) };
-	#ok($@ ne '', "Test $function_name: (numerator=$r1, denominator=$r2)");
-	
-	my $numerator = Rational->new;
-	my $denominator = Rational->new;
+	my $numerator = 1;
+	my $denominator = 0;
 	my $r1 = repr($numerator);
 	my $r2 = repr($denominator);
+	eval { Rational->new($numerator, $denominator) };
+	ok($@ ne '', "Test $function_name: (numerator=$r1, denominator=$r2)");
+	
+	$numerator = Rational->new;
+	$denominator = 0;
+	$r1 = repr($numerator);
+	$r2 = repr($denominator);
+	eval { Rational->new($numerator, $denominator) };
+	ok($@ ne '', "Test $function_name: (numerator=$r1, denominator=$r2)");
+	
+	$numerator = Rational->new;
+	$denominator = Rational->new;
+	$r1 = repr($numerator);
+	$r2 = repr($denominator);
 	eval { Rational->new($numerator, $denominator) };
 	ok($@ ne '', "Test $function_name: (numerator=$r1, denominator=$r2)");
 }
