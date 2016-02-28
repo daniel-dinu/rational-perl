@@ -71,8 +71,8 @@ sub test_constructor_denominator_zero_division_error {
 	
 	my $numerator = Rational->new;
 	my $denominator = Rational->new;
-	$r1 = repr($numerator);
-	$r2 = repr($denominator);
+	my $r1 = repr($numerator);
+	my $r2 = repr($denominator);
 	eval { Rational->new($numerator, $denominator) };
 	ok($@ ne '', "Test $function_name: (numerator=$r1, denominator=$r2)");
 }
