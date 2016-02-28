@@ -200,12 +200,6 @@ sub eq {
 	return $self->{_numerator} * $other->{_denominator} == $self->{_denominator} * $other->{_numerator};
 }
 
-sub eqq {
-	my $self = shift;
-	my $other = shift;
-	return $self->{_numerator} * $other->{_denominator} == $self->{_denominator} * $other->{_numerator};
-}
-
 sub ne {
 	my $self = shift;
 	my $other = shift;
