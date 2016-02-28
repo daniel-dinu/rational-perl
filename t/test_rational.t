@@ -103,7 +103,8 @@ test_constructor_denominator;
 
 sub test_constructor_transform {
 	my $function_name = (caller(0))[3];
-	my @test_constructor_transform_values = ([Rational->new(1, 2), Rational->new(1, 2), Rational->new(1)],
+	my @test_constructor_transform_values = (
+		[Rational->new(1, 2), Rational->new(1, 2), Rational->new(1)],
 		[Rational->new(1, 2), Rational->new(1, 4), Rational->new(2)],
 		[Rational->new(1, 4), Rational->new(1, 2), Rational->new(1, 2)],
 		[Rational->new(-1, 2), Rational->new(1, 2), Rational->new(-1)],
@@ -114,7 +115,8 @@ sub test_constructor_transform {
 		[Rational->new(1, 4), Rational->new(-1, 2), Rational->new(-1, 2)],
 		[Rational->new(-1, 2), Rational->new(-1, 2), Rational->new(1)],
 		[Rational->new(-1, 2), Rational->new(-1, 4), Rational->new(2)],
-		[Rational->new(-1, 4), Rational->new(-1, 2), Rational->new(1, 2)]);
+		[Rational->new(-1, 4), Rational->new(-1, 2), Rational->new(1, 2)]
+	);
 													
 	foreach my $row (@test_constructor_transform_values) {
 		my $actual_result  = Rational->new($row->[0], $row->[1]);

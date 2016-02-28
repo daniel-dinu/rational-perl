@@ -19,8 +19,7 @@ use constant POWER_TYPE_ERROR_MESSAGE => 'The power must be an integer value!';
 
 use constant ZERO_TO_NEGATIVE_POWER_ZERO_DIVISION_ERROR_MESSAGE => '0 cannot be raised to a negative power!';
 
-use constant NEGATIVE_INTEGER_TO_FRACTIONAL_POWER_ERROR_MESSAGE => 'Negative number cannot be raised to a fractional ",
-																	power!';
+use constant NEGATIVE_INTEGER_TO_FRACTIONAL_POWER_ERROR_MESSAGE => 'Negative number cannot be raised to a fractional power!';
 
 use constant FIRST_TERM_TYPE_ERROR_MESSAGE => 'The first term must be a rational or an integer value!';
 use constant SECOND_TERM_TYPE_ERROR_MESSAGE => 'The second term must be a rational or an integer value!';
@@ -47,7 +46,7 @@ use overload
 
 sub new {
 	my ($class, $numerator, $denominator) = @_;
-	
+
 	$numerator = defined($numerator) ? $numerator : 0;
 	$denominator = defined($denominator) ? $denominator : 1;
 
@@ -74,7 +73,7 @@ sub new {
 	my $divisor = gcd($numerator, $denominator);
 	
 	my $self = {
-		_numerator 	=> $numerator / $divisor,
+		_numerator   => $numerator / $divisor,
 		_denominator => $denominator / $divisor,
 	};
 	
