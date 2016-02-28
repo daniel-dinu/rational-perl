@@ -1,5 +1,9 @@
+matrix:
+  - PERL_VERSION: "5.22.1.2"
+  - PERL_VERSION: "5.20.3.2"
+
 install:
-  - choco install strawberryperl -version 5.20.1.1
+  - choco install strawberryperl -version $env:PERL_VERSION
   - SET PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
 
 test_script:
