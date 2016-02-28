@@ -32,7 +32,7 @@ my @known_values = ([1, 2, 1, 2],
 
 sub repr {
 	my $r = shift;
-	if (defined($r) && ref($r) eq __PACKAGE__) {
+	if (defined($r) && ref($r) eq 'Rational') {
 		return $r->repr
 	}
 	return $r;
