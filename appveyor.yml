@@ -9,7 +9,7 @@ install:
 build: off
 
 test_script:
-  - perl Build
+  - perl Build.PL
   - Build
   - Build test
   - Build install
