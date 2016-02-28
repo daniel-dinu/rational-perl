@@ -11,4 +11,4 @@ test_script:
 cache:
   - local
 
- build: off
+build: off
