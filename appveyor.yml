@@ -4,7 +4,6 @@ init:
 install:
   - choco install strawberryperl -version 5.20.1.1
   - SET PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
-  - cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 
 build: off
 
@@ -13,7 +12,6 @@ test_script:
   - Build
   - Build test
   - Build install
-  - cover -test
 
 cache:
   - local
