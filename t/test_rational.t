@@ -32,7 +32,10 @@ my @known_values = ([1, 2, 1, 2],
 
 sub repr {
 	my $r = shift;
-	$r->can('repr') ? return $r->repr : return $r;
+	if (defined($a) && ref($a) eq __PACKAGE__) {
+		return $r->repr
+	}
+	return $r;
 }
 
 
