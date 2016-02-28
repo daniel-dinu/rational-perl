@@ -18,10 +18,10 @@ script:
   - ./Build
   - ./Build test
   - ./Build install
+  - cover -test
 
 after_success:
   - cover -report codecov
 
 notifications:
   email: false
-  
