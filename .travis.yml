@@ -6,12 +6,15 @@ perl:
   - "5.16"
   - "5.14"
 
+# OSX not supported:
+#   https://docs.travis-ci.com/user/multi-os/
+#   https://docs.travis-ci.com/user/languages/perl
 os:
   - linux
-  - osx
+#  - osx
 
 before_script:
-  - cpan Devel::Cover Devel::Cover::Report::Codecov
+  - cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 
 script:
   - perl Build
