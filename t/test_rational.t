@@ -1,7 +1,7 @@
 use strict;
 use warnings;
  
-use Test::Simple tests => 539;
+use Test::Simple tests => 538;
 
 use FindBin;
 use lib "$FindBin::Bin/../lib";
