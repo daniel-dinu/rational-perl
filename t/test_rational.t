@@ -55,12 +55,12 @@ test_constructor_denominator_type_error;
 sub test_constructor_denominator_zero_division_error {
 	my $function_name = (caller(0))[3];
 	
-	my $numerator = 1;
-	my $denominator = 0;
-	my $r1 = repr($numerator);
-	my $r2 = repr($denominator);
-	eval { Rational->new($numerator, $denominator) };
-	ok($@ ne '', "Test $function_name: (numerator=$r1, denominator=$r2)");
+	#my $numerator = 1;
+	#my $denominator = 0;
+	#my $r1 = repr($numerator);
+	#my $r2 = repr($denominator);
+	#eval { Rational->new($numerator, $denominator) };
+	#ok($@ ne '', "Test $function_name: (numerator=$r1, denominator=$r2)");
 	
 	#$numerator = Rational->new;
 	#$denominator = 0;
@@ -101,17 +101,17 @@ test_constructor_denominator;
 sub test_constructor_transform {
 	my $function_name = (caller(0))[3];
 	my @test_constructor_transform_values = ([Rational->new(1, 2), Rational->new(1, 2), Rational->new(1)],
-												[Rational->new(1, 2), Rational->new(1, 4), Rational->new(2)],
-												[Rational->new(1, 4), Rational->new(1, 2), Rational->new(1, 2)],
-												[Rational->new(-1, 2), Rational->new(1, 2), Rational->new(-1)],
-												[Rational->new(-1, 2), Rational->new(1, 4), Rational->new(-2)],
-												[Rational->new(-1, 4), Rational->new(1, 2), Rational->new(-1, 2)],
-												[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(-1)],
-												[Rational->new(1, 2), Rational->new(-1, 4), Rational->new(-2)],
-												[Rational->new(1, 4), Rational->new(-1, 2), Rational->new(-1, 2)],
-												[Rational->new(-1, 2), Rational->new(-1, 2), Rational->new(1)],
-												[Rational->new(-1, 2), Rational->new(-1, 4), Rational->new(2)],
-												[Rational->new(-1, 4), Rational->new(-1, 2), Rational->new(1, 2)]);
+		[Rational->new(1, 2), Rational->new(1, 4), Rational->new(2)],
+		[Rational->new(1, 4), Rational->new(1, 2), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, 2), Rational->new(-1)],
+		[Rational->new(-1, 2), Rational->new(1, 4), Rational->new(-2)],
+		[Rational->new(-1, 4), Rational->new(1, 2), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(-1)],
+		[Rational->new(1, 2), Rational->new(-1, 4), Rational->new(-2)],
+		[Rational->new(1, 4), Rational->new(-1, 2), Rational->new(-1, 2)],
+		[Rational->new(-1, 2), Rational->new(-1, 2), Rational->new(1)],
+		[Rational->new(-1, 2), Rational->new(-1, 4), Rational->new(2)],
+		[Rational->new(-1, 4), Rational->new(-1, 2), Rational->new(1, 2)]);
 													
 	foreach my $row (@test_constructor_transform_values) {
 		my $actual_result  = Rational->new($row->[0], $row->[1]);
