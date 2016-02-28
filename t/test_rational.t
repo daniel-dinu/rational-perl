@@ -31,7 +31,7 @@ my @known_values = ([1, 2, 1, 2],
 
 
 sub repr {
-	my $r = shift;
+	my $r = shift || return '';
 	$r->can('repr') ? return $r->repr : return $r;
 }
 
