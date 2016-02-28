@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use File::Basename;
+use Cwd;
+
+my $dirname = dirname(__FILE__);
+chdir $dirname;
+
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+
+use Rational;
+
+require '../example.pl';
+
+print "\n";
+
+while (<>) {
+	chomp;
+	my $result = eval;
+	print "$_ = $result\n";
+}
