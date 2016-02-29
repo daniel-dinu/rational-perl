@@ -2,7 +2,7 @@ language: generic
 os: osx
 osx_image: xcode7.2
 
-before_script:
+install:
   - git clone https://github.com/tokuhirom/plenv.git ~/.plenv
   - echo 'export PATH="$HOME/.plenv/bin:$PATH"'
   - echo 'eval "$(plenv init -)"'
