@@ -1,13 +1,6 @@
-language: perl
-perl:
-  - "5.22"
-
-# OSX not supported:
-#   https://docs.travis-ci.com/user/multi-os/
-#   https://docs.travis-ci.com/user/languages/perl
-os:
-#  - linux
-  - osx
+language: generic
+os: osx
+osx_image: xcode7.2
 
 before_script:
   - git clone https://github.com/tokuhirom/plenv.git ~/.plenv
