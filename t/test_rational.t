@@ -224,8 +224,7 @@ sub test_value {
 		my $r = Rational->new($row->[0], $row->[1]);
 		my $expected_value = $row->[2] / $row->[3];
 	
-		my $message = "Test $function_name: (numerator=$row->[0], denominator=$row->[1], ",
-						"expected_result=$expected_value)";
+		my $message = "Test $function_name: (numerator=$row->[0], denominator=$row->[1], expected_result=$expected_value)";
 		ok($expected_value == $r->value, $message);
 	}
 }
@@ -238,8 +237,7 @@ sub test_quotient {
 		my $r = Rational->new($row->[0], $row->[1]);
 		my $expected_value = int($row->[2] / $row->[3]);
 
-		my $message = "Test $function_name: (numerator=$row->[0], denominator=$row->[1], ",
-						"expected_result=$expected_value)";
+		my $message = "Test $function_name: (numerator=$row->[0], denominator=$row->[1], expected_result=$expected_value)";
 		ok($expected_value == $r->quotient, $message);
 	}
 }
@@ -253,8 +251,7 @@ sub test_remainder {
 		my $r = Rational->new($row->[0], $row->[1]);
 		my $expected_value = $row->[2] % $row->[3];
 
-		my $message = "Test $function_name: (numerator=$row->[0], denominator=$row->[1], ",
-						"expected_result=$expected_value)";
+		my $message = "Test $function_name: (numerator=$row->[0], denominator=$row->[1], expected_result=$expected_value)";
 		ok($expected_value == $r->remainder, $message);
 	}
 }
@@ -1029,7 +1026,7 @@ sub test_rpow {
 							[3, Rational->new(1, 3), 1.4422495703074083],
 
 							[1, Rational->new(-1, 3), 1],
-							[2, Rational->new(-1, 3), 0.7937005259840998],
+							[2, Rational->new(-1, 3), 0.793700525984],
 							[3, Rational->new(-1, 3), 0.6933612743506348],
 
 							[-1, Rational->new(1), -1],
