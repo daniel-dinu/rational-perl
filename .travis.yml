@@ -11,7 +11,10 @@ perl:
 #   https://docs.travis-ci.com/user/languages/perl
 os:
   - linux
-#  - osx
+  - osx
+
+before_install:
+  - eval $(curl https://travis-perl.github.io/init) --auto
 
 before_script:
   - cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
