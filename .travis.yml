@@ -7,8 +7,8 @@ before_script:
   - echo 'export PATH="$HOME/.plenv/bin:$PATH"'
   - echo 'eval "$(plenv init -)"'
   #- exec $SHELL -l
-  - git clone https://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
-  - echo 'TEST'
+  #- git clone https://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
+  #- echo 'TEST'
   - plenv install 5.18.0
   - plenv rehash
 
