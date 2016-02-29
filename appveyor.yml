@@ -2,9 +2,13 @@ environment:
   matrix:
     - PERL_VERSION: 5.20.1.1
     - PERL_VERSION: 5.16.3.3
+    - PERL_VERSION: 5.16.3.2
+    - PERL_VERSION: 5.16.3.1
+    - PERL_VERSION: 5.12.3.1
+    - PERL_VERSION: 5.12.3.0
 
 install:
-  - choco install strawberryperl -version $env:PERL_VERSION
+  - choco install strawberryperl -version %PERL_VERSION%
   - SET PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
 
 test_script:
