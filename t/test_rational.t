@@ -9,25 +9,27 @@ use lib "$FindBin::Bin/../lib";
 use Rational;
 
 
-my @known_values = ([1, 2, 1, 2],
-					[-1, 2, -1, 2],
-					[1, -2, -1, 2],
-					[-1, -2, 1, 2],
+my @known_values = (
+	[1, 2, 1, 2],
+	[-1, 2, -1, 2],
+	[1, -2, -1, 2],
+	[-1, -2, 1, 2],
 					
-					[2, 4, 1, 2],
-					[-2, 4, -1, 2],
-					[2, -4, -1, 2],
-					[-2, -4, 1, 2],
+	[2, 4, 1, 2],
+	[-2, 4, -1, 2],
+	[2, -4, -1, 2],
+	[-2, -4, 1, 2],
 					
-					[2, 1, 2, 1],
-					[-2, 1, -2, 1],
-					[2, -1, -2, 1],
-					[-2, -1, 2, 1],
+	[2, 1, 2, 1],
+	[-2, 1, -2, 1],
+	[2, -1, -2, 1],
+	[-2, -1, 2, 1],
 					
-					[4, 2, 2, 1],
-					[-4, 2, -2, 1],
-					[4, -2, -2, 1],
-					[-4, -2, 2, 1]);
+	[4, 2, 2, 1],
+	[-4, 2, -2, 1],
+	[4, -2, -2, 1],
+	[-4, -2, 2, 1]
+);
 
 
 sub repr {
@@ -134,49 +136,51 @@ test_constructor_transform;
 
 sub test_transform {
 	my $function_name = (caller(0))[3];
-	my @test_transform_values = ([1, 2, 1, 2],
-									[2, 4, 2, 4],
-									[-1, 2, -1, 2],
-									[-2, 4, -2, 4],
-									[1, -2, 1, -2],
-									[2, -4, 2, -4],
-									[-1, -2, -1, -2],
-									[-2, -4, -2, -4],
+	my @test_transform_values = (
+		[1, 2, 1, 2],
+		[2, 4, 2, 4],
+		[-1, 2, -1, 2],
+		[-2, 4, -2, 4],
+		[1, -2, 1, -2],
+		[2, -4, 2, -4],
+		[-1, -2, -1, -2],
+		[-2, -4, -2, -4],
 
-									[Rational->new(1, 2), 1, 1, 2],
-									[Rational->new(1, 2), 2, 1, 4],
-									[Rational->new(-1, 2), 1, -1, 2],
-									[Rational->new(-1, 2), 2, -1, 4],
-									[Rational->new(1, -2), 1, -1, 2],
-									[Rational->new(1, -2), 2, -1, 4],
-									[Rational->new(1, 2), -1, 1, -2],
-									[Rational->new(1, 2), -2, 1, -4],
-									[Rational->new(-1, 2), -1, -1, -2],
-									[Rational->new(-1, 2), -2, -1, -4],
+		[Rational->new(1, 2), 1, 1, 2],
+		[Rational->new(1, 2), 2, 1, 4],
+		[Rational->new(-1, 2), 1, -1, 2],
+		[Rational->new(-1, 2), 2, -1, 4],
+		[Rational->new(1, -2), 1, -1, 2],
+		[Rational->new(1, -2), 2, -1, 4],
+		[Rational->new(1, 2), -1, 1, -2],
+		[Rational->new(1, 2), -2, 1, -4],
+		[Rational->new(-1, 2), -1, -1, -2],
+		[Rational->new(-1, 2), -2, -1, -4],
 
-									[1, Rational->new(1, 2), 2, 1],
-									[2, Rational->new(1, 2), 4, 1],
-									[-1, Rational->new(1, 2), -2, 1],
-									[-2, Rational->new(1, 2), -4, 1],
-									[1, Rational->new(-1, 2), 2, -1],
-									[2, Rational->new(-1, 2), 4, -1],
-									[1, Rational->new(1, -2), 2, -1],
-									[2, Rational->new(1, -2), 4, -1],
-									[-1, Rational->new(1, 2), -2, 1],
-									[-2, Rational->new(1, 2), -4, 1],
+		[1, Rational->new(1, 2), 2, 1],
+		[2, Rational->new(1, 2), 4, 1],
+		[-1, Rational->new(1, 2), -2, 1],
+		[-2, Rational->new(1, 2), -4, 1],
+		[1, Rational->new(-1, 2), 2, -1],
+		[2, Rational->new(-1, 2), 4, -1],
+		[1, Rational->new(1, -2), 2, -1],
+		[2, Rational->new(1, -2), 4, -1],
+		[-1, Rational->new(1, 2), -2, 1],
+		[-2, Rational->new(1, 2), -4, 1],
 
-									[Rational->new(1, 2), Rational->new(1, 2), 2, 2],
-									[Rational->new(1, 2), Rational->new(1, 4), 4, 2],
-									[Rational->new(1, 4), Rational->new(1, 2), 2, 4],
-									[Rational->new(-1, 2), Rational->new(1, 2), -2, 2],
-									[Rational->new(-1, 2), Rational->new(1, 4), -4, 2],
-									[Rational->new(-1, 4), Rational->new(1, 2), -2, 4],
-									[Rational->new(1, 2), Rational->new(-1, 2), 2, -2],
-									[Rational->new(1, 2), Rational->new(-1, 4), 4, -2],
-									[Rational->new(1, 4), Rational->new(-1, 2), 2, -4],
-									[Rational->new(-1, 2), Rational->new(-1, 2), -2, -2],
-									[Rational->new(-1, 2), Rational->new(-1, 4), -4, -2],
-									[Rational->new(-1, 4), Rational->new(-1, 2), -2, -4]);
+		[Rational->new(1, 2), Rational->new(1, 2), 2, 2],
+		[Rational->new(1, 2), Rational->new(1, 4), 4, 2],
+		[Rational->new(1, 4), Rational->new(1, 2), 2, 4],
+		[Rational->new(-1, 2), Rational->new(1, 2), -2, 2],
+		[Rational->new(-1, 2), Rational->new(1, 4), -4, 2],
+		[Rational->new(-1, 4), Rational->new(1, 2), -2, 4],
+		[Rational->new(1, 2), Rational->new(-1, 2), 2, -2],
+		[Rational->new(1, 2), Rational->new(-1, 4), 4, -2],
+		[Rational->new(1, 4), Rational->new(-1, 2), 2, -4],
+		[Rational->new(-1, 2), Rational->new(-1, 2), -2, -2],
+		[Rational->new(-1, 2), Rational->new(-1, 4), -4, -2],
+		[Rational->new(-1, 4), Rational->new(-1, 2), -2, -4]
+	);
 													
 	foreach my $row (@test_transform_values) {
 		my @actual_result  = Rational::transform($row->[0], $row->[1]);
@@ -195,17 +199,19 @@ test_transform;
 
 sub test_gcd {
 	my $function_name = (caller(0))[3];
-	my @gcd_test_values = ([0, 0, 0],
-							[0, 1, 1],
-							[1, 0, 1],
-							[0, -1, -1],
-							[-1, 0, -1],
-							[2, 4, 2],
-							[-2, 4, 2],
-							[-2, -4, -2],
-							[42, 30, 6],
-							[42, -30, -6],
-							[-42, -30, -6]);
+	my @gcd_test_values = (
+		[0, 0, 0],
+		[0, 1, 1],
+		[1, 0, 1],
+		[0, -1, -1],
+		[-1, 0, -1],
+		[2, 4, 2],
+		[-2, 4, 2],
+		[-2, -4, -2],
+		[42, 30, 6],
+		[42, -30, -6],
+		[-42, -30, -6]
+	);
 													
 	foreach my $row (@gcd_test_values) {
 		my $actual_gcd  = Rational::gcd($row->[0], $row->[1]);
@@ -376,20 +382,24 @@ test_invert;
 sub test_lt {
 	my $function_name = (caller(0))[3];
 
-	my @true_test_cases = ([Rational->new(-1, 2), Rational->new()],
-							[Rational->new, Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(1, 2)],
-							[Rational->new(1, 4), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(-1, 4)]);
+	my @true_test_cases = (
+		[Rational->new(-1, 2), Rational->new()],
+		[Rational->new, Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, 2)],
+		[Rational->new(1, 4), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(-1, 4)]
+	);
 
-	my @false_test_cases = ([Rational->new(), Rational->new()],
-							[Rational->new(1, 2), Rational->new()],
-							[Rational->new(), Rational->new(-1, 2)],
-							[Rational->new(-1, 2), Rational->new(1, -2)],
-							[Rational->new(1, 2), Rational->new(2, 4)],
-							[Rational->new(1, 2), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 4)],
-							[Rational->new(-1, 4), Rational->new(-1, 2)]);
+	my @false_test_cases = (
+		[Rational->new(), Rational->new()],
+		[Rational->new(1, 2), Rational->new()],
+		[Rational->new(), Rational->new(-1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, -2)],
+		[Rational->new(1, 2), Rational->new(2, 4)],
+		[Rational->new(1, 2), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 4)],
+		[Rational->new(-1, 4), Rational->new(-1, 2)]
+	);
 						
 	foreach my $row (@true_test_cases) {
 		my $r1 = repr($row->[0]);
@@ -412,20 +422,24 @@ test_lt;
 sub test_le {
 	my $function_name = (caller(0))[3];
 
-	my @true_test_cases = ([Rational->new(), Rational->new()],
-							[Rational->new(-1, 2), Rational->new()],
-							[Rational->new(), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(1, -2)],
-							[Rational->new(1, 2), Rational->new(2, 4)],
-							[Rational->new(-1, 2), Rational->new(1, 2)],
-							[Rational->new(1, 4), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(-1, 4)]);
+	my @true_test_cases = (
+		[Rational->new(), Rational->new()],
+		[Rational->new(-1, 2), Rational->new()],
+		[Rational->new(), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, -2)],
+		[Rational->new(1, 2), Rational->new(2, 4)],
+		[Rational->new(-1, 2), Rational->new(1, 2)],
+		[Rational->new(1, 4), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(-1, 4)]
+	);
 
-	my @false_test_cases = ([Rational->new(1, 2), Rational->new()],
-							[Rational->new(), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 4)],
-							[Rational->new(-1, 4), Rational->new(-1, 2)]);
+	my @false_test_cases = (
+		[Rational->new(1, 2), Rational->new()],
+		[Rational->new(), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 4)],
+		[Rational->new(-1, 4), Rational->new(-1, 2)]
+	);
 
 	foreach my $row (@true_test_cases) {
 		my $r1 = repr($row->[0]);
@@ -448,20 +462,24 @@ test_le;
 sub test_eq {
 	my $function_name = (caller(0))[3];
 
-	my @true_test_cases = ([Rational->new(), Rational->new()],
-							[Rational->new(-1, 2), Rational->new(1, -2)],
-							[Rational->new(1, 2), Rational->new(2, 4)]);
+	my @true_test_cases = (
+		[Rational->new(), Rational->new()],
+		[Rational->new(-1, 2), Rational->new(1, -2)],
+		[Rational->new(1, 2), Rational->new(2, 4)]
+	);
 
-	my @false_test_cases = ([Rational->new(-1, 2), Rational->new()],
-							[Rational->new(), Rational->new(1, 2)],
-							[Rational->new(1, 2), Rational->new()],
-							[Rational->new(), Rational->new(-1, 2)],
-							[Rational->new(-1, 2), Rational->new(1, 2)],
-							[Rational->new(1, 4), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(-1, 4)],
-							[Rational->new(1, 2), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 4)],
-							[Rational->new(-1, 4), Rational->new(-1, 2)]);
+	my @false_test_cases = (
+		[Rational->new(-1, 2), Rational->new()],
+		[Rational->new(), Rational->new(1, 2)],
+		[Rational->new(1, 2), Rational->new()],
+		[Rational->new(), Rational->new(-1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, 2)],
+		[Rational->new(1, 4), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(-1, 4)],
+		[Rational->new(1, 2), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 4)],
+		[Rational->new(-1, 4), Rational->new(-1, 2)]
+	);
 
 	foreach my $row (@true_test_cases) {
 		my $r1 = repr($row->[0]);
@@ -484,20 +502,24 @@ test_eq;
 sub test_ne {
 	my $function_name = (caller(0))[3];
 
-	my @true_test_cases = ([Rational->new(-1, 2), Rational->new()],
-							[Rational->new(), Rational->new(1, 2)],
-							[Rational->new(1, 2), Rational->new()],
-							[Rational->new(), Rational->new(-1, 2)],
-							[Rational->new(-1, 2), Rational->new(1, 2)],
-							[Rational->new(1, 4), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(-1, 4)],
-							[Rational->new(1, 2), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 4)],
-							[Rational->new(-1, 4), Rational->new(-1, 2)]);
+	my @true_test_cases = (
+		[Rational->new(-1, 2), Rational->new()],
+		[Rational->new(), Rational->new(1, 2)],
+		[Rational->new(1, 2), Rational->new()],
+		[Rational->new(), Rational->new(-1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, 2)],
+		[Rational->new(1, 4), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(-1, 4)],
+		[Rational->new(1, 2), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 4)],
+		[Rational->new(-1, 4), Rational->new(-1, 2)]
+	);
 
-	my @false_test_cases = ([Rational->new(), Rational->new()],
-							[Rational->new(-1, 2), Rational->new(1, -2)],
-							[Rational->new(1, 2), Rational->new(2, 4)]);
+	my @false_test_cases = (
+		[Rational->new(), Rational->new()],
+		[Rational->new(-1, 2), Rational->new(1, -2)],
+		[Rational->new(1, 2), Rational->new(2, 4)]
+	);
 
 	foreach my $row (@true_test_cases) {
 		my $r1 = repr($row->[0]);
@@ -520,20 +542,24 @@ test_ne;
 sub test_ge {
 	my $function_name = (caller(0))[3];
 
-	my @true_test_cases = ([Rational->new(), Rational->new()],
-							[Rational->new(1, 2), Rational->new()],
-							[Rational->new(), Rational->new(-1, 2)],
-							[Rational->new(-1, 2), Rational->new(1, -2)],
-							[Rational->new(1, 2), Rational->new(2, 4)],
-							[Rational->new(1, 2), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 4)],
-							[Rational->new(-1, 4), Rational->new(-1, 2)]);
+	my @true_test_cases = (
+		[Rational->new(), Rational->new()],
+		[Rational->new(1, 2), Rational->new()],
+		[Rational->new(), Rational->new(-1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, -2)],
+		[Rational->new(1, 2), Rational->new(2, 4)],
+		[Rational->new(1, 2), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 4)],
+		[Rational->new(-1, 4), Rational->new(-1, 2)]
+	);
 
-	my @false_test_cases = ([Rational->new(-1, 2), Rational->new()],
-							[Rational->new(), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(1, 2)],
-							[Rational->new(1, 4), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(-1, 4)]);
+	my @false_test_cases = (
+		[Rational->new(-1, 2), Rational->new()],
+		[Rational->new(), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, 2)],
+		[Rational->new(1, 4), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(-1, 4)]
+	);
 						
 	foreach my $row (@true_test_cases) {
 		my $r1 = repr($row->[0]);
@@ -556,20 +582,24 @@ test_ge;
 sub test_gt {
 	my $function_name = (caller(0))[3];
 
-	my @true_test_cases = ([Rational->new(1, 2), Rational->new()],
-							[Rational->new(), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 4)],
-							[Rational->new(-1, 4), Rational->new(-1, 2)]);
+	my @true_test_cases = (
+		[Rational->new(1, 2), Rational->new()],
+		[Rational->new(), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 4)],
+		[Rational->new(-1, 4), Rational->new(-1, 2)]
+	);
 
-	my @false_test_cases = ([Rational->new(), Rational->new()],
-							[Rational->new(-1, 2), Rational->new()],
-							[Rational->new(), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(1, -2)],
-							[Rational->new(1, 2), Rational->new(2, 4)],
-							[Rational->new(-1, 2), Rational->new(1, 2)],
-							[Rational->new(1, 4), Rational->new(1, 2)],
-							[Rational->new(-1, 2), Rational->new(-1, 4)]);
+	my @false_test_cases = (
+		[Rational->new(), Rational->new()],
+		[Rational->new(-1, 2), Rational->new()],
+		[Rational->new(), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(1, -2)],
+		[Rational->new(1, 2), Rational->new(2, 4)],
+		[Rational->new(-1, 2), Rational->new(1, 2)],
+		[Rational->new(1, 4), Rational->new(1, 2)],
+		[Rational->new(-1, 2), Rational->new(-1, 4)]
+	);
 						
 	foreach my $row (@true_test_cases) {
 		my $r1 = repr($row->[0]);
@@ -602,16 +632,18 @@ test_add_type_error;
 sub test_add {
 	my $function_name = (caller(0))[3];
 	
-	my @add_test_values = ([Rational->new(), Rational->new(1, 2), Rational->new(1, 2)],
-							[Rational->new(1, 2), Rational->new(), Rational->new(1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 2), Rational->new(1, 1)],
-							[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(0, 1)],
-							[Rational->new(1, 4), Rational->new(2, 4), Rational->new(3, 4)],
-							[Rational->new(1, 4), Rational->new(3, 4), Rational->new(1, 1)],
-							[Rational->new(1, 4), Rational->new(-3, 4), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 3), Rational->new(5, 6)],
-							[Rational->new(2), -1, Rational->new(1)],
-							[Rational->new(2), 1, Rational->new(3)]);
+	my @add_test_values = (
+		[Rational->new(), Rational->new(1, 2), Rational->new(1, 2)],
+		[Rational->new(1, 2), Rational->new(), Rational->new(1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 2), Rational->new(1, 1)],
+		[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(0, 1)],
+		[Rational->new(1, 4), Rational->new(2, 4), Rational->new(3, 4)],
+		[Rational->new(1, 4), Rational->new(3, 4), Rational->new(1, 1)],
+		[Rational->new(1, 4), Rational->new(-3, 4), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 3), Rational->new(5, 6)],
+		[Rational->new(2), -1, Rational->new(1)],
+		[Rational->new(2), 1, Rational->new(3)]
+	);
 
 	foreach my $row (@add_test_values) {
 		my $r1 = repr($row->[0]);
@@ -638,16 +670,18 @@ test_sub_type_error;
 sub test_sub {
 	my $function_name = (caller(0))[3];
 	
-	my @sub_test_values = ([Rational->new(), Rational->new(1, 2), Rational->new(-1, 2)],
-							[Rational->new(1, 2), Rational->new(), Rational->new(1, 2)],
-							[Rational->new(1, 2), Rational->new(1, 2), Rational->new(0, 1)],
-							[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(1, 1)],
-							[Rational->new(1, 4), Rational->new(2, 4), Rational->new(-1, 4)],
-							[Rational->new(1, 4), Rational->new(3, 4), Rational->new(-1, 2)],
-							[Rational->new(1, 4), Rational->new(-3, 4), Rational->new(1, 1)],
-							[Rational->new(1, 2), Rational->new(1, 3), Rational->new(1, 6)],
-							[Rational->new(2), -1, Rational->new(3)],
-							[Rational->new(2), 1, Rational->new(1)]);
+	my @sub_test_values = (
+		[Rational->new(), Rational->new(1, 2), Rational->new(-1, 2)],
+		[Rational->new(1, 2), Rational->new(), Rational->new(1, 2)],
+		[Rational->new(1, 2), Rational->new(1, 2), Rational->new(0, 1)],
+		[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(1, 1)],
+		[Rational->new(1, 4), Rational->new(2, 4), Rational->new(-1, 4)],
+		[Rational->new(1, 4), Rational->new(3, 4), Rational->new(-1, 2)],
+		[Rational->new(1, 4), Rational->new(-3, 4), Rational->new(1, 1)],
+		[Rational->new(1, 2), Rational->new(1, 3), Rational->new(1, 6)],
+		[Rational->new(2), -1, Rational->new(3)],
+		[Rational->new(2), 1, Rational->new(1)]
+	);
 
 	foreach my $row (@sub_test_values) {
 		my $r1 = repr($row->[0]);
@@ -674,16 +708,18 @@ test_mul_type_error;
 sub test_mul {
 	my $function_name = (caller(0))[3];
 	
-	my @mul_test_values = ([Rational->new(), Rational->new(1, 2), Rational->new()],
-							[Rational->new(1, 2), Rational->new(), Rational->new()],
-							[Rational->new(1, 2), Rational->new(1, 2), Rational->new(1, 4)],
-							[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(-1, 4)],
-							[Rational->new(1, 4), Rational->new(2, 4), Rational->new(1, 8)],
-							[Rational->new(1, 4), Rational->new(3, 4), Rational->new(3, 16)],
-							[Rational->new(1, 4), Rational->new(-3, 4), Rational->new(-3, 16)],
-							[Rational->new(1, 2), Rational->new(1, 3), Rational->new(1, 6)],
-							[Rational->new(2), 1, Rational->new(2)],
-							[Rational->new(2), -1, Rational->new(-2)]);
+	my @mul_test_values = (
+		[Rational->new(), Rational->new(1, 2), Rational->new()],
+		[Rational->new(1, 2), Rational->new(), Rational->new()],
+		[Rational->new(1, 2), Rational->new(1, 2), Rational->new(1, 4)],
+		[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(-1, 4)],
+		[Rational->new(1, 4), Rational->new(2, 4), Rational->new(1, 8)],
+		[Rational->new(1, 4), Rational->new(3, 4), Rational->new(3, 16)],
+		[Rational->new(1, 4), Rational->new(-3, 4), Rational->new(-3, 16)],
+		[Rational->new(1, 2), Rational->new(1, 3), Rational->new(1, 6)],
+		[Rational->new(2), 1, Rational->new(2)],
+		[Rational->new(2), -1, Rational->new(-2)]
+	);
 
 	foreach my $row (@mul_test_values) {
 		my $r1 = repr($row->[0]);
@@ -721,15 +757,17 @@ test_div_type_error;
 sub test_div {
 	my $function_name = (caller(0))[3];
 	
-	my @div_test_values = ([Rational->new(), Rational->new(1, 2), Rational->new()],
-							[Rational->new(1, 2), Rational->new(1, 2), Rational->new(1, 1)],
-							[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(-1, 1)],
-							[Rational->new(1, 4), Rational->new(2, 4), Rational->new(1, 2)],
-							[Rational->new(1, 4), Rational->new(3, 4), Rational->new(1, 3)],
-							[Rational->new(1, 4), Rational->new(-3, 4), Rational->new(-1, 3)],
-							[Rational->new(1, 2), Rational->new(1, 3), Rational->new(3, 2)],
-							[Rational->new(2), 1, Rational->new(2)],
-							[Rational->new(2), -1, Rational->new(-2)]);
+	my @div_test_values = (
+		[Rational->new(), Rational->new(1, 2), Rational->new()],
+		[Rational->new(1, 2), Rational->new(1, 2), Rational->new(1, 1)],
+		[Rational->new(1, 2), Rational->new(-1, 2), Rational->new(-1, 1)],
+		[Rational->new(1, 4), Rational->new(2, 4), Rational->new(1, 2)],
+		[Rational->new(1, 4), Rational->new(3, 4), Rational->new(1, 3)],
+		[Rational->new(1, 4), Rational->new(-3, 4), Rational->new(-1, 3)],
+		[Rational->new(1, 2), Rational->new(1, 3), Rational->new(3, 2)],
+		[Rational->new(2), 1, Rational->new(2)],
+		[Rational->new(2), -1, Rational->new(-2)]
+	);
 
 	foreach my $row (@div_test_values) {
 		my $r1 = repr($row->[0]);
@@ -768,42 +806,44 @@ test_pow_type_error;
 sub test_pow {
 	my $function_name = (caller(0))[3];
 	
-	my @pow_test_values = ([Rational->new(), 0, Rational->new()],
-							[Rational->new(), 1, Rational->new()],
-							[Rational->new(), 2, Rational->new()],
-							[Rational->new(), 3, Rational->new()],
+	my @pow_test_values = (
+		[Rational->new(), 0, Rational->new()],
+		[Rational->new(), 1, Rational->new()],
+		[Rational->new(), 2, Rational->new()],
+		[Rational->new(), 3, Rational->new()],
 
-							[Rational->new(1, 2), -3, Rational->new(8, 1)],
-							[Rational->new(1, 2), -2, Rational->new(4, 1)],
-							[Rational->new(1, 2), -1, Rational->new(2, 1)],
-							[Rational->new(1, 2), 0, Rational->new(1, 1)],
-							[Rational->new(1, 2), 1, Rational->new(1, 2)],
-							[Rational->new(1, 2), 2, Rational->new(1, 4)],
-							[Rational->new(1, 2), 3, Rational->new(1, 8)],
+		[Rational->new(1, 2), -3, Rational->new(8, 1)],
+		[Rational->new(1, 2), -2, Rational->new(4, 1)],
+		[Rational->new(1, 2), -1, Rational->new(2, 1)],
+		[Rational->new(1, 2), 0, Rational->new(1, 1)],
+		[Rational->new(1, 2), 1, Rational->new(1, 2)],
+		[Rational->new(1, 2), 2, Rational->new(1, 4)],
+		[Rational->new(1, 2), 3, Rational->new(1, 8)],
 
-							[Rational->new(-1, 2), -3, Rational->new(-8, 1)],
-							[Rational->new(-1, 2), -2, Rational->new(4, 1)],
-							[Rational->new(-1, 2), -1, Rational->new(-2, 1)],
-							[Rational->new(-1, 2), 0, Rational->new(1, 1)],
-							[Rational->new(-1, 2), 1, Rational->new(-1, 2)],
-							[Rational->new(-1, 2), 2, Rational->new(1, 4)],
-							[Rational->new(-1, 2), 3, Rational->new(-1, 8)],
+		[Rational->new(-1, 2), -3, Rational->new(-8, 1)],
+		[Rational->new(-1, 2), -2, Rational->new(4, 1)],
+		[Rational->new(-1, 2), -1, Rational->new(-2, 1)],
+		[Rational->new(-1, 2), 0, Rational->new(1, 1)],
+		[Rational->new(-1, 2), 1, Rational->new(-1, 2)],
+		[Rational->new(-1, 2), 2, Rational->new(1, 4)],
+		[Rational->new(-1, 2), 3, Rational->new(-1, 8)],
 
-							[Rational->new(1, 3), -3, Rational->new(27, 1)],
-							[Rational->new(1, 3), -2, Rational->new(9, 1)],
-							[Rational->new(1, 3), -1, Rational->new(3, 1)],
-							[Rational->new(1, 3), 0, Rational->new(1, 1)],
-							[Rational->new(1, 3), 1, Rational->new(1, 3)],
-							[Rational->new(1, 3), 2, Rational->new(1, 9)],
-							[Rational->new(1, 3), 3, Rational->new(1, 27)],
+		[Rational->new(1, 3), -3, Rational->new(27, 1)],
+		[Rational->new(1, 3), -2, Rational->new(9, 1)],
+		[Rational->new(1, 3), -1, Rational->new(3, 1)],
+		[Rational->new(1, 3), 0, Rational->new(1, 1)],
+		[Rational->new(1, 3), 1, Rational->new(1, 3)],
+		[Rational->new(1, 3), 2, Rational->new(1, 9)],
+		[Rational->new(1, 3), 3, Rational->new(1, 27)],
 
-							[Rational->new(-1, 3), -3, Rational->new(-27, 1)],
-							[Rational->new(-1, 3), -2, Rational->new(9, 1)],
-							[Rational->new(-1, 3), -1, Rational->new(-3, 1)],
-							[Rational->new(-1, 3), 0, Rational->new(1, 1)],
-							[Rational->new(-1, 3), 1, Rational->new(-1, 3)],
-							[Rational->new(-1, 3), 2, Rational->new(1, 9)],
-							[Rational->new(-1, 3), 3, Rational->new(-1, 27)]);
+		[Rational->new(-1, 3), -3, Rational->new(-27, 1)],
+		[Rational->new(-1, 3), -2, Rational->new(9, 1)],
+		[Rational->new(-1, 3), -1, Rational->new(-3, 1)],
+		[Rational->new(-1, 3), 0, Rational->new(1, 1)],
+		[Rational->new(-1, 3), 1, Rational->new(-1, 3)],
+		[Rational->new(-1, 3), 2, Rational->new(1, 9)],
+		[Rational->new(-1, 3), 3, Rational->new(-1, 27)]
+	);
 
 	foreach my $row (@pow_test_values) {
 		my $r1 = repr($row->[0]);
@@ -830,14 +870,16 @@ test_radd_type_error;
 sub test_radd {
 	my $function_name = (caller(0))[3];
 	
-	my @radd_test_values = ([1, Rational->new(1, 2), Rational->new(3, 2)],
-							[1, Rational->new(), Rational->new(1, 1)],
-							[-1, Rational->new(1, 2), Rational->new(-1, 2)],
-							[1, Rational->new(-1, 2), Rational->new(1, 2)],
-							[1, Rational->new(2, 4), Rational->new(3, 2)],
-							[1, Rational->new(3, 4), Rational->new(7, 4)],
-							[1, Rational->new(-3, 4), Rational->new(1, 4)],
-							[1, Rational->new(1, 3), Rational->new(4, 3)]);
+	my @radd_test_values = (
+		[1, Rational->new(1, 2), Rational->new(3, 2)],
+		[1, Rational->new(), Rational->new(1, 1)],
+		[-1, Rational->new(1, 2), Rational->new(-1, 2)],
+		[1, Rational->new(-1, 2), Rational->new(1, 2)],
+		[1, Rational->new(2, 4), Rational->new(3, 2)],
+		[1, Rational->new(3, 4), Rational->new(7, 4)],
+		[1, Rational->new(-3, 4), Rational->new(1, 4)],
+		[1, Rational->new(1, 3), Rational->new(4, 3)]
+	);
 
 	foreach my $row (@radd_test_values) {
 		my $r1 = repr($row->[0]);
@@ -864,14 +906,16 @@ test_rsub_type_error;
 sub test_rsub {
 	my $function_name = (caller(0))[3];
 	
-	my @rsub_test_values = ([1, Rational->new(1, 2), Rational->new(1, 2)],
-							[1, Rational->new(), Rational->new(1, 1)],
-							[-1, Rational->new(1, 2), Rational->new(-3, 2)],
-							[1, Rational->new(-1, 2), Rational->new(3, 2)],
-							[1, Rational->new(2, 4), Rational->new(1, 2)],
-							[1, Rational->new(3, 4), Rational->new(1, 4)],
-							[1, Rational->new(-3, 4), Rational->new(7, 4)],
-							[1, Rational->new(1, 3), Rational->new(2, 3)]);
+	my @rsub_test_values = (
+		[1, Rational->new(1, 2), Rational->new(1, 2)],
+		[1, Rational->new(), Rational->new(1, 1)],
+		[-1, Rational->new(1, 2), Rational->new(-3, 2)],
+		[1, Rational->new(-1, 2), Rational->new(3, 2)],
+		[1, Rational->new(2, 4), Rational->new(1, 2)],
+		[1, Rational->new(3, 4), Rational->new(1, 4)],
+		[1, Rational->new(-3, 4), Rational->new(7, 4)],
+		[1, Rational->new(1, 3), Rational->new(2, 3)]
+	);
 
 	foreach my $row (@rsub_test_values) {
 		my $r1 = repr($row->[0]);
@@ -898,14 +942,16 @@ test_rmul_type_error;
 sub test_rmul {
 	my $function_name = (caller(0))[3];
 	
-	my @rmul_test_values = ([1, Rational->new(1, 2), Rational->new(1, 2)],
-							[1, Rational->new(), Rational->new(0, 1)],
-							[-1, Rational->new(1, 2), Rational->new(-1, 2)],
-							[1, Rational->new(-1, 2), Rational->new(-1, 2)],
-							[1, Rational->new(2, 4), Rational->new(1, 2)],
-							[1, Rational->new(3, 4), Rational->new(3, 4)],
-							[1, Rational->new(-3, 4), Rational->new(-3, 4)],
-							[1, Rational->new(1, 3), Rational->new(1, 3)]);
+	my @rmul_test_values = (
+		[1, Rational->new(1, 2), Rational->new(1, 2)],
+		[1, Rational->new(), Rational->new(0, 1)],
+		[-1, Rational->new(1, 2), Rational->new(-1, 2)],
+		[1, Rational->new(-1, 2), Rational->new(-1, 2)],
+		[1, Rational->new(2, 4), Rational->new(1, 2)],
+		[1, Rational->new(3, 4), Rational->new(3, 4)],
+		[1, Rational->new(-3, 4), Rational->new(-3, 4)],
+		[1, Rational->new(1, 3), Rational->new(1, 3)]
+	);
 
 	foreach my $row (@rmul_test_values) {
 		my $r1 = repr($row->[0]);
@@ -942,13 +988,15 @@ test_rdiv_type_error;
 sub test_rdiv {
 	my $function_name = (caller(0))[3];
 	
-	my @rdiv_test_values = ([1, Rational->new(1, 2), Rational->new(2, 1)],
-							[-1, Rational->new(1, 2), Rational->new(-2, 1)],
-							[1, Rational->new(-1, 2), Rational->new(-2, 1)],
-							[1, Rational->new(2, 4), Rational->new(2, 1)],
-							[1, Rational->new(3, 4), Rational->new(4, 3)],
-							[1, Rational->new(-3, 4), Rational->new(-4, 3)],
-							[1, Rational->new(1, 3), Rational->new(3, 1)]);
+	my @rdiv_test_values = (
+		[1, Rational->new(1, 2), Rational->new(2, 1)],
+		[-1, Rational->new(1, 2), Rational->new(-2, 1)],
+		[1, Rational->new(-1, 2), Rational->new(-2, 1)],
+		[1, Rational->new(2, 4), Rational->new(2, 1)],
+		[1, Rational->new(3, 4), Rational->new(4, 3)],
+		[1, Rational->new(-3, 4), Rational->new(-4, 3)],
+		[1, Rational->new(1, 3), Rational->new(3, 1)]
+	);
 
 	foreach my $row (@rdiv_test_values) {
 		my $r1 = repr($row->[0]);
@@ -980,17 +1028,19 @@ test_rpow_zero_division_error;
 sub test_rpow_value_error {
 	my $function_name = (caller(0))[3];
 
-	my @rpow_test_values = ([-2, Rational->new(1, 2)],
-							[-1, Rational->new(1, 2)],
-							[-3, Rational->new(-1, 2)],
-							[-2, Rational->new(-1, 2)],
-							[-1, Rational->new(-1, 2)],
-							[-3, Rational->new(1, 3)],
-							[-2, Rational->new(1, 3)],
-							[-1, Rational->new(1, 3)],
-							[-3, Rational->new(-1, 3)],
-							[-2, Rational->new(-1, 3)],
-							[-1, Rational->new(-1, 3)]);
+	my @rpow_test_values = (
+		[-2, Rational->new(1, 2)],
+		[-1, Rational->new(1, 2)],
+		[-3, Rational->new(-1, 2)],
+		[-2, Rational->new(-1, 2)],
+		[-1, Rational->new(-1, 2)],
+		[-3, Rational->new(1, 3)],
+		[-2, Rational->new(1, 3)],
+		[-1, Rational->new(1, 3)],
+		[-3, Rational->new(-1, 3)],
+		[-2, Rational->new(-1, 3)],
+		[-1, Rational->new(-1, 3)]
+	);
 
 	foreach my $row (@rpow_test_values) {
 		my $power_repr = repr($row->[1]);
@@ -1006,33 +1056,35 @@ test_rpow_value_error;
 sub test_rpow {
 	my $function_name = (caller(0))[3];
 	
-	my @rpow_test_values = ([0, Rational->new(), 1],
-							[1, Rational->new(), 1],
-							[2, Rational->new(), 1],
-							[3, Rational->new(), 1],
+	my @rpow_test_values = (
+		[0, Rational->new(), 1],
+		[1, Rational->new(), 1],
+		[2, Rational->new(), 1],
+		[3, Rational->new(), 1],
 
-							[0, Rational->new(1, 2), 0],
-							[1, Rational->new(1, 2), 1],
-							[2, Rational->new(1, 2), 1.4142135623730951],
-							[3, Rational->new(1, 2), 1.7320508075688772],
+		[0, Rational->new(1, 2), 0],
+		[1, Rational->new(1, 2), 1],
+		[2, Rational->new(1, 2), 1.4142135623730951],
+		[3, Rational->new(1, 2), 1.7320508075688772],
 
-							[1, Rational->new(-1, 2), 1],
-							[2, Rational->new(-1, 2), 0.7071067811865476],
-							[3, Rational->new(-1, 2), 0.5773502691896257],
+		[1, Rational->new(-1, 2), 1],
+		[2, Rational->new(-1, 2), 0.7071067811865476],
+		[3, Rational->new(-1, 2), 0.5773502691896257],
 
-							[0, Rational->new(1, 3), 0],
-							[1, Rational->new(1, 3), 1],
-							[2, Rational->new(1, 3), 1.2599210498948732],
-							[3, Rational->new(1, 3), 1.4422495703074083],
+		[0, Rational->new(1, 3), 0],
+		[1, Rational->new(1, 3), 1],
+		[2, Rational->new(1, 3), 1.2599210498948732],
+		[3, Rational->new(1, 3), 1.4422495703074083],
 
-							[1, Rational->new(-1, 3), 1],
-							[2, Rational->new(-1, 3), 0.7937005259840998],
-							[3, Rational->new(-1, 3), 0.6933612743506348],
+		[1, Rational->new(-1, 3), 1],
+		[2, Rational->new(-1, 3), 0.7937005259840998],
+		[3, Rational->new(-1, 3), 0.6933612743506348],
 
-							[-1, Rational->new(1), -1],
-							[-2, Rational->new(1), -2],
-							[-1, Rational->new(-1), -1],
-							[-2, Rational->new(-2), 0.25]);
+		[-1, Rational->new(1), -1],
+		[-2, Rational->new(1), -2],
+		[-1, Rational->new(-1), -1],
+		[-2, Rational->new(-2), 0.25]
+	);
 
 	foreach my $row (@rpow_test_values) {
 		my $power_repr = repr($row->[1]);
