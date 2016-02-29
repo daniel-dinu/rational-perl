@@ -1,7 +1,6 @@
 language: generic
 os: osx
 osx_image: xcode7.2
-sudo: true
 
 install:
   - git clone https://github.com/tokuhirom/plenv.git ~/.plenv
@@ -10,8 +9,8 @@ install:
   #- exec $SHELL -l
   #- git clone https://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
   #- echo 'TEST'
-  #- plenv install 5.18.0
-  #- plenv rehash
+  - plenv install 5.18.0
+  - plenv rehash
 
   #- cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 
