@@ -14,14 +14,14 @@ os:
   - osx
 
 before_script:
-  - cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
+  - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov; fi
 
 script:
   - perl Build.PL
   - ./Build
   - ./Build test
   - ./Build install
-  - cover -test
+  - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then cover -test; fi
 
 after_success:
   - cover -report codecov
