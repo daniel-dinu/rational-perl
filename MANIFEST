@@ -3,7 +3,5 @@ Build.PL
 example.pl
 lib/Rational.pm
 MANIFEST
-META.yml
-META.json
 run_tests.pl
 t/test_rational.t
