@@ -5,23 +5,26 @@ perl:
   - "5.18"
   - "5.16"
   - "5.14"
+  - "5.12"
+  - "5.10"
+  - "5.8"
 
 # OSX not supported:
 #   https://docs.travis-ci.com/user/multi-os/
 #   https://docs.travis-ci.com/user/languages/perl
 os:
   - linux
-  - osx
+#  - osx
 
 before_script:
-  - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov; fi
+  - cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 
 script:
   - perl Build.PL
   - ./Build
   - ./Build test
   - ./Build install
-  - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then cover -test; fi
+  - cover -test
 
 after_success:
   - cover -report codecov
