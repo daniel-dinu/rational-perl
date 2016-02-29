@@ -1026,7 +1026,7 @@ sub test_rpow {
 							[3, Rational->new(1, 3), 1.4422495703074083],
 
 							[1, Rational->new(-1, 3), 1],
-							[2, Rational->new(-1, 3), 0.793700525984],
+							[2, Rational->new(-1, 3), 0.7937005259840998],
 							[3, Rational->new(-1, 3), 0.6933612743506348],
 
 							[-1, Rational->new(1), -1],
@@ -1036,10 +1036,13 @@ sub test_rpow {
 
 	foreach my $row (@rpow_test_values) {
 		my $power_repr = repr($row->[1]);
-		
+
 		my $r = $row->[0] ** $row->[1];
+		my $expected_value = sprintf "%.12f", $row->[2];
+		my $actual_value = sprintf "%.12f", $r;
+
 		my $message = "Test $function_name: (base=$row->[0], power=$power_repr, expected_power=$row->[2])";
-		ok($row->[2] == $r, $message);
+		ok($expected_value == $actual_value, $message);
 	}
 }
 test_rpow;
