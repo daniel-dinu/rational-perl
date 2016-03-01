@@ -3,8 +3,10 @@
 set -e
 set -x
 
-plenv rehash
-perl --version
+if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+    plenv rehash
+    perl --version
+fi
 
 perl Build.PL
 ./Build
