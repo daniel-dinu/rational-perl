@@ -13,16 +13,17 @@ install:
   #- git clone https://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
   #- echo 'TEST'
   - plenv install 5.18.0 &> /dev/null
+  - perl --version
   #- plenv rehash
 
-  #- cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
+  - cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 
 script:
   - perl Build.PL
   - ./Build
   - ./Build test
-  #- ./Build install
-  #- cover -test
+  - ./Build install
+  - cover -test
 
 after_success:
   - cover -report codecov
