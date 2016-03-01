@@ -12,7 +12,7 @@ install:
   - perl --version
   - plenv rehash
   - perl --version
-  - penv install-cpanm
+  - penv install-cpanm &> /dev/null
   - cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
   - plenv rehash
 
