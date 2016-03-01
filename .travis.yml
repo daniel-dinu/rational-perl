@@ -12,17 +12,17 @@ install:
   - perl --version
   - plenv rehash
   - perl --version
-  #- cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
+  - cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 
 script:
   - perl Build.PL
   - ./Build
   - ./Build test
   - ./Build install
-  #- cover -test
+  - cover -test
 
-#after_success:
-  #- cover -report codecov
+after_success:
+  - cover -report codecov
 
 notifications:
   email: false
