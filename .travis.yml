@@ -14,7 +14,8 @@ install:
   #- echo 'TEST'
   - plenv install 5.18.0 &> /dev/null
   - perl --version
-  #- plenv rehash
+  - plenv rehash
+  - perl --version
 
   #- cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 
@@ -22,7 +23,7 @@ script:
   - perl Build.PL
   - ./Build
   - ./Build test
-  - ./Build install
+  #- ./Build install
   #- cover -test
 
 #after_success:
