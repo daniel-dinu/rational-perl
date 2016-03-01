@@ -20,7 +20,7 @@ script:
   - ./.travis/run.sh
 
 after_success:
-  - if [[ $TRAVIS_OS_NAME == 'osx' ]]; then cover -report codecov; fi
+  - if [[ $TRAVIS_OS_NAME == 'linux' ]]; then cover -report codecov; fi
 
 notifications:
   email: false

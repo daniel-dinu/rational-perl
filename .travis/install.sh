@@ -6,6 +6,8 @@ set -x
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     # Install some custom requirements on OS X
 
+    echo "OSX"
+
     brew update
     brew install plenv
     brew install perl-build
