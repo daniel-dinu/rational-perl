@@ -21,4 +21,6 @@ else
     # Install some custom requirements on Linux
 
     echo "LINUX"
+
+    cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 fi
