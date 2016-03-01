@@ -18,7 +18,7 @@ script:
   - perl Build.PL
   - ./Build
   - ./Build test
-  #- ./Build install
+  - ./Build install
   #- cover -test
 
 #after_success:
