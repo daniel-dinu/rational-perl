@@ -4,9 +4,11 @@ set -e
 set -x
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+    eval "$(plenv init -)"
     plenv rehash
-    perl --version
 fi
+
+perl --version
 
 perl Build.PL
 ./Build
