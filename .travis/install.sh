@@ -6,8 +6,6 @@ set -x
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     # Install some custom requirements on OS X
 
-    echo "OSX"
-
     brew update
     brew install plenv
     brew install perl-build
@@ -19,8 +17,6 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     perl --version
 else
     # Install some custom requirements on Linux
-
-    echo "LINUX"
 
     cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 fi

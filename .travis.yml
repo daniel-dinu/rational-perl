@@ -5,6 +5,20 @@ matrix:
     # Linux
     - perl: "5.22"
       os: linux
+    - perl: "5.20"
+      os: linux
+    - perl: "5.18"
+      os: linux
+    - perl: "5.16"
+      os: linux
+    - perl: "5.14"
+      os: linux
+    - perl: "5.12"
+      os: linux
+    - perl: "5.10"
+      os: linux
+    - perl: "5.08"
+      os: linux
     # OSX
     - language: generic
       os: osx

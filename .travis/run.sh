@@ -3,6 +3,8 @@
 set -e
 set -x
 
+perl --version
+
 perl Build.PL
 ./Build
 ./Build test
