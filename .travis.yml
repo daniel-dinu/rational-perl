@@ -2,21 +2,21 @@ language: generic
 os: osx
 osx_image: xcode7.2
 
-#install:
-  #- brew update
-  #- brew install plenv
-  #- brew install perl-build
+install:
+  - brew update
+  - brew install plenv
+  - brew install perl-build
   #- git clone https://github.com/tokuhirom/plenv.git ~/.plenv
   #- echo 'export PATH="$HOME/.plenv/bin:$PATH"'
-  #- echo 'eval "$(plenv init -)"'
+  - echo 'eval "$(plenv init -)"'
   #- exec $SHELL -l
   #- git clone https://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
   #- echo 'TEST'
-  #- plenv install 5.16.1 &> /dev/null
-  #- plenv global 5.16.1
-  #- perl --version
-  #- plenv rehash
-  #- perl --version
+  - plenv install 5.16.1 &> /dev/null
+  - plenv global 5.16.1
+  - perl --version
+  - plenv rehash
+  - perl --version
 
   #- cpanm --quiet --notest --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
 
