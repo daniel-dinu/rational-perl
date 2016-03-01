@@ -12,7 +12,7 @@ install:
   #- exec $SHELL -l
   #- git clone https://github.com/tokuhirom/Perl-Build.git ~/.plenv/plugins/perl-build/
   #- echo 'TEST'
-  - plenv install 5.18.0 &> /dev/null
+  - plenv install 5.16.1 &> /dev/null
   - perl --version
   - plenv rehash
   - perl --version
