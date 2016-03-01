@@ -3,6 +3,7 @@
 set -e
 set -x
 
+plenv rehash
 perl --version
 
 perl Build.PL

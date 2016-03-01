@@ -17,7 +17,7 @@ matrix:
       os: linux
     - perl: "5.10"
       os: linux
-    - perl: "5.08"
+    - perl: "5.8"
       os: linux
     # OSX
     - language: generic
