@@ -13,7 +13,7 @@ install:
   - plenv rehash
   - perl --version
   - plenv install-cpanm
-  - cpanm --quiet --notest Devel::Cover Devel::Cover::Report::Codecov
+  - cpanm --skip-satisfied Devel::Cover Devel::Cover::Report::Codecov
   - plenv rehash
 
 script:
