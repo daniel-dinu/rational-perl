@@ -5,7 +5,6 @@ set -x
 
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     eval "$(plenv init -)"
-    plenv rehash
 fi
 
 perl --version

@@ -11,10 +11,16 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
     brew install perl-build
 
     eval "$(plenv init -)"
+
     plenv install $TOXENV &> /dev/null
     plenv global $TOXENV
     plenv rehash
+
     perl --version
+
+    plenv install-cpanm
+    cpanm --quiet --notest --skip-satisfied Module::Build
+    plenv rehash
 else
     # Install some custom requirements on Linux
 
