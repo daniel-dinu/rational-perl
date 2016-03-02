@@ -58,7 +58,7 @@ sub new {
 		die(DENOMINATOR_TYPE_ERROR_MESSAGE);
 	}
 	
-	if ($denominator =~ /^[+-]?\d+$/ and 0 == $denominator) {
+	if (ref($denominator) ne __PACKAGE__  and $denominator =~ /^[+-]?\d+$/ and 0 == $denominator) {
 		die(DENOMINATOR_ZERO_DIVISION_ERROR_MESSAGE);
 	}
 	
