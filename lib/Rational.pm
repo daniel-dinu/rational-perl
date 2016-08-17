@@ -307,11 +307,11 @@ sub pow {
 			die(NEGATIVE_INTEGER_TO_FRACTIONAL_POWER_ERROR_MESSAGE);
 		}
     
-    	if (0 == $power and 0 > $self->value) {
-    		die(ZERO_TO_NEGATIVE_POWER_ZERO_DIVISION_ERROR_MESSAGE);
-    	}
+    		if (0 == $power and 0 > $self->value) {
+    			die(ZERO_TO_NEGATIVE_POWER_ZERO_DIVISION_ERROR_MESSAGE);
+    		}
     
-    	return $power ** $self->value;
+    		return $power ** $self->value;
 	}
 	
 	if ($power !~ /^[+-]?\d+$/) {
